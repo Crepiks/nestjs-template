@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { getAppConfig } from './common/config/app.config';
 import { AppModule } from './modules/app.module';
 
 async function bootstrap() {
@@ -16,7 +17,9 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-  await app.listen(3000);
+  const appConfig = getAppConfig();
+
+  await app.listen(appConfig.port);
 }
 
 bootstrap();
