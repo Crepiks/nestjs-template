@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppEnvironment, getAppConfig } from 'src/common/config/app.config';
 import { getDatabaseConfig } from 'src/common/config/database.config';
 import { UserDao } from 'src/common/dao/user.dao';
+import { HealthModule } from './health/health.module';
 
 const appConfig = getAppConfig();
 const databaseConfig = getDatabaseConfig();
@@ -28,6 +29,7 @@ const databaseConfig = getDatabaseConfig();
       ssl: appConfig.environment !== AppEnvironment.Local,
       synchronize: false,
     }),
+    HealthModule,
   ],
 })
 export class AppModule {}
