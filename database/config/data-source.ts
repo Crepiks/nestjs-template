@@ -4,6 +4,7 @@ import {
   getAppConfig,
   AppEnvironment,
 } from '../../src/common/config/app.config';
+import { UserDao } from '../../src/common/dao/user.dao';
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [],
+  entities: [UserDao],
   extra:
     appConfig.environment !== AppEnvironment.Local
       ? {
