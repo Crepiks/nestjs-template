@@ -24,16 +24,25 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typeorm": "npx typeorm-ts-node-commonjs",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./database/config/data-source.ts",
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./database/config/data-source.ts",
+    "database:clear": "ts-node ./database/scripts/clear.ts",
+    "database:seed": "ts-node ./database/seeds/seed.ts",
+    "database:reset": "npm run database:clear && npm run migration:run && npm run database:seed"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/typeorm": "^9.0.1",
     "dotenv": "^16.0.2",
+    "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm": "^0.3.10"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
