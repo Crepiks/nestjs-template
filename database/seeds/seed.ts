@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AppDataSource } from '../config/data-source';
 import { UserDao } from '../../src/common/dao/user.dao';
 import { seedUsers } from './users.seed';
